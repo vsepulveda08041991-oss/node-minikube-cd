@@ -19,7 +19,8 @@ jobs:
         run: |
           export SHELL=/bin/bash
           eval $(minikube -p minikube docker-env)
-          docker build --provenance=false --no-cache -f ./Dockerfile -t devops-hint/node-app:latest .
+          export DOCKER_BUILDKIT=0
+          docker build -f ./Dockerfile -t devops-hint/node-app:latest .
           echo -n "verifying images:"
           docker images
 
